@@ -9,6 +9,6 @@ type Company struct {
 	Employees   sql.NullInt32  `db:"employees" mapstructure:"employees"`
 	Registered  sql.NullBool   `db:"registered" mapstructure:"registered"`
 	Type        sql.NullString `db:"type" mapstructure:"type"`
-	CreatedAt   sql.NullTime   `db:"createdAt" mapstructure:"createdAt"`
-	UpdatedAt   sql.NullTime   `db:"updatedAt" mapstructure:"updatedAt"`
+	CreatedAt   sql.NullTime   `db:"createdat" mapstructure:"createdat"`
+	UpdatedAt   sql.NullTime   `db:"updatedat" mapstructure:"updatedat"`
 }

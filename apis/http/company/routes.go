@@ -3,6 +3,8 @@ package company
 import (
 	"companybuilder/shared"
 
+	"companybuilder/apis/middleware"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,6 +17,7 @@ func bindRoutes(router *gin.Engine, deps *shared.Deps) {
 	companyService := NewCompanyService(deps)
 	routerAPI := router.Group("/company")
 	{
+		routerAPI.Use(middleware.JwtAuthMiddleware())
 		// routerAPI.GET("/", companyService.GetAll)
 		routerAPI.GET("/:id", companyService.Get)
 		// routerAPI.POST("/", companyService.Create)

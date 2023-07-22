@@ -7,3 +7,5 @@ db:
   tables:
     - schema: public
       name: company
+    - schema: public
+      name: users

@@ -7,7 +7,7 @@ import (
 	"context"
 )
 
-// ConcurrencyInterface ...
+// CompanyInterface ...
 type CompanyInterface interface {
 	Get(ctx context.Context, id string) (*models.Company, error)
 }

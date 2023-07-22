@@ -2,6 +2,9 @@ package middleware
 
 import (
 	"fmt"
+	"net/http"
+
+	"companybuilder/modules/auth"
 
 	"github.com/gin-gonic/gin"
 	pkgErrors "github.com/pkg/errors"
@@ -33,4 +36,16 @@ func HandlePanic(c *gin.Context) {
 		}
 	}(c)
 	c.Next()
+}
+
+func JwtAuthMiddleware() gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		err := auth.TokenValid(ctx.Query("token"), ctx.Request.Header.Get("Authorization"))
+		if err != nil {
+			ctx.String(http.StatusUnauthorized, "Unauthorized")
+			ctx.Abort()
+			return
+		}
+		ctx.Next()
+	}
 }

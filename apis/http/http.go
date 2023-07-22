@@ -3,6 +3,7 @@ package http
 import (
 	"sync"
 
+	"companybuilder/apis/http/auth"
 	"companybuilder/apis/http/company"
 	"companybuilder/apis/http/ping"
 	"companybuilder/apis/middleware"
@@ -30,6 +31,8 @@ func StartServer(deps *shared.Deps, wg *sync.WaitGroup, fatalError chan error) e
 
 	// Initializes Ping routes
 	ping.NewPingRoute(router)
+	// Initialize all the routes
+	auth.NewRoute(router, deps)
 	// Initialize all the routes
 	company.NewRoute(router, deps)
 

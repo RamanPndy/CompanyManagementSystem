@@ -17,6 +17,8 @@ type DBInstance struct {
 // DBInterface ..
 type DBInterface interface {
 	Query(query string) (*sql.Rows, error)
+	Exec(query string, params ...interface{}) (*sql.Result, error)
+	GetOne(query string, params ...interface{}) *sql.Row
 }
 
 // DB ..
@@ -68,4 +70,18 @@ func (m *DBClient) Query(query string) (*sql.Rows, error) {
 
 	// Returns
 	return rows, nil
+}
+
+func (m *DBClient) Exec(query string, params ...interface{}) (*sql.Result, error) {
+	result, err := m.client.Exec(query, params...)
+	if err != nil {
+		return nil, err
+	}
+
+	// Returns
+	return &result, nil
+}
+
+func (m *DBClient) GetOne(query string, params ...interface{}) *sql.Row {
+	return m.client.QueryRow(query, params...)
 }

@@ -3,13 +3,14 @@ package utils
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
+	"html"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/mitchellh/mapstructure"
 	goErr "github.com/ralstan-vaz/go-errors"
+	"golang.org/x/crypto/bcrypt"
 )
 
 const (
@@ -143,19 +144,18 @@ func GetPointerToTime(x time.Time) *time.Time {
 	return &x
 }
 
-func GetDurationInSeconds(duration string) (float64, error) {
-	if duration != "" {
-		durationSplits := strings.Split(duration, ":")
-		durationFormat := fmt.Sprintf("%sh%sm", durationSplits[0], durationSplits[1])
-		if len(durationSplits) == 3 {
-			durationFormat = fmt.Sprintf("%sh%sm%ss", durationSplits[0], durationSplits[1], durationSplits[2])
-		}
-
-		h, err := time.ParseDuration(durationFormat)
-		if err != nil {
-			return 0, err
-		}
-		return h.Seconds(), nil
+func CreateHash(password string) (string, error) {
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if err != nil {
+		return "", err
 	}
-	return 0, nil
+	return string(hashedPassword), nil
+}
+
+func VerifyHash(password, hashedPassword string) error {
+	return bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
+}
+
+func EscapeString(test string) string {
+	return html.EscapeString(strings.TrimSpace(test))
 }

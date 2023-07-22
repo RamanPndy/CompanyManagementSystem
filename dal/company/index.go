@@ -2,6 +2,7 @@ package company
 
 import (
 	"companybuilder/config"
+	"companybuilder/dal/common"
 	"companybuilder/shared"
 	"context"
 	"fmt"
@@ -12,21 +13,10 @@ type Dal struct {
 	Deps *shared.Deps
 }
 
-func (d *Dal) getSchemaTable(tableName string) (string, string) {
-	dbTables := d.Deps.Config.Get().DB.Tables
-	for _, dbTable := range dbTables {
-		if dbTable.Name == tableName {
-			return dbTable.Schema, dbTable.Name
-		}
-	}
-
-	return "", ""
-}
-
 func (d *Dal) GetCompanies(ctx context.Context) ([]*Company, error) {
 	companies := make([]*Company, 0)
 
-	schema, table := d.getSchemaTable(config.COMPANY)
+	schema, table := common.GetSchemaTable(d.Deps, config.COMPANY)
 
 	query := fmt.Sprintf(config.GET_ALL_QUERY, schema, table)
 
