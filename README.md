@@ -59,15 +59,15 @@ For all companies related API JWT token needs to be passed as Bearer Token which
 
 1. GetAllCompanies : This API will return all companies created in the System
 curl --location --request GET 'localhost:80/company' \
---header 'Authorization: Bearer <Bearer Token got from Login request>'
+--header 'Authorization: Bearer `Token got from Login request`'
 
 2. GetCompany : This API will return Company information by company id.
 curl --location --request GET 'localhost:80/company/499622eb-8712-49d9-9bd3-cbfb0b038525' \
---header 'Authorization: Bearer <Bearer Token got from Login request>'
+--header 'Authorization: Bearer `Token got from Login request`'
 
 3. CreateCompany: This API will create Company in the system
 curl --location --request POST 'localhost:80/company/' \
---header 'Authorization: Bearer <Bearer Token got from Login request>' \
+--header 'Authorization: Bearer `Token got from Login request`' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "name": "apple.com",
@@ -79,7 +79,7 @@ curl --location --request POST 'localhost:80/company/' \
 
 4. UpdateCompany : This API will update Company information in the system
 curl --location --request PATCH 'localhost:80/company/499622eb-8712-49d9-9bd3-cbfb0b038525' \
---header 'Authorization: Bearer <Bearer Token got from Login request>' \
+--header 'Authorization: Bearer `Token got from Login request`' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "description": "google company",
@@ -89,5 +89,5 @@ curl --location --request PATCH 'localhost:80/company/499622eb-8712-49d9-9bd3-cb
 
 5. Delete Company : This API will delete Company data from the system by company id
 curl --location --request DELETE 'localhost:80/company/499622eb-8712-49d9-9bd3-cbfb0b038525' \
---header 'Authorization: Bearer <Bearer Token got from Login request>' \
+--header 'Authorization: Bearer `Token got from Login request`' \
 --data-raw ''
