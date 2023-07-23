@@ -9,9 +9,8 @@ import (
 // Response is a struct storing the response.
 // Message : the message field of the response.
 type Response struct {
-	Message  string `json:"message"`
-	App      string `json:"app"`
-	CommitID string `json:"commitId"`
+	Message string `json:"message"`
+	App     string `json:"app"`
 }
 
 // pongResponse is a constant used for sending response message.

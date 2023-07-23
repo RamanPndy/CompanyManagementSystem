@@ -2,10 +2,10 @@ CREATE DATABASE companydb;
 
 CREATE TABLE IF NOT EXISTS public.company (
     id character varying NOT NULL,
-    name character varying NOT NULL,
-    description character varying,
-    employees bigint,
-    registered boolean,
+    name character varying(15) NOT NULL,
+    description character varying((3000),
+    employees bigint NOT NULL,
+    registered boolean NOT NULL,
     type character varying,
     "createdat" timestamp without time zone NOT NULL,
     "updatedat" timestamp without time zone NOT NULL

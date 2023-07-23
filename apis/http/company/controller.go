@@ -50,7 +50,7 @@ func (c *Company) GetAll(ctx *gin.Context) {
 }
 
 func (c *Company) Create(ctx *gin.Context) {
-	var request *models.Request
+	var request *models.CreateRequest
 	var err error
 
 	defer httpUtils.HandleError(ctx, &err, ctx.Request)
@@ -69,7 +69,7 @@ func (c *Company) Create(ctx *gin.Context) {
 }
 
 func (c *Company) Update(ctx *gin.Context) {
-	var request *models.Request
+	var request *models.UpdateRequest
 	var err error
 
 	defer httpUtils.HandleError(ctx, &err, ctx.Request)

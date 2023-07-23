@@ -1,9 +1,13 @@
 package company
 
 import (
+	"companybuilder/config"
 	"companybuilder/dal/company"
 	models "companybuilder/models/company"
+	"companybuilder/pkg/utils"
 	"context"
+	"errors"
+	"strings"
 	"time"
 
 	"github.com/google/uuid"
@@ -49,13 +53,17 @@ func (m *Module) Get(ctx context.Context, id string) (*models.Company, error) {
 	return &company, nil
 }
 
-func (m *Module) Create(ctx context.Context, request *models.Request) (*models.Response, error) {
+func (m *Module) Create(ctx context.Context, request *models.CreateRequest) (*models.Response, error) {
+	if !utils.Contains(strings.Split(config.COMPANY_TYPES, "|"), request.Type) {
+		return nil, errors.New("Invalid Company Type")
+	}
+
 	company := company.Company{
 		ID:          uuid.NewString(),
 		Name:        request.Name,
 		Description: request.Description,
 		Employees:   request.Employees,
-		Registered:  *request.Registered,
+		Registered:  request.Registered,
 		Type:        request.Type,
 		CreatedAt:   time.Now(),
 		UpdatedAt:   time.Now(),
@@ -72,7 +80,7 @@ func (m *Module) Create(ctx context.Context, request *models.Request) (*models.R
 	}, nil
 }
 
-func (m *Module) Update(ctx context.Context, id string, request *models.Request) (*models.Response, error) {
+func (m *Module) Update(ctx context.Context, id string, request *models.UpdateRequest) (*models.Response, error) {
 	company, err := m.Dal.Company.GetOne(ctx, id)
 	if err != nil {
 		return nil, err

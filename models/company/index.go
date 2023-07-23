@@ -4,7 +4,15 @@ import (
 	"time"
 )
 
-type Request struct {
+type CreateRequest struct {
+	Name        string `json:"name" binding:"required"`
+	Description string `json:"description"`
+	Employees   int    `json:"employees" binding:"required"`
+	Registered  bool   `json:"registered" binding:"required"`
+	Type        string `json:"type" binding:"required"`
+}
+
+type UpdateRequest struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
 	Employees   int    `json:"employees"`

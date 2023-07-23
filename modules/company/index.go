@@ -11,8 +11,8 @@ import (
 type CompanyInterface interface {
 	GetAll(context.Context) ([]*models.Company, error)
 	Get(context.Context, string) (*models.Company, error)
-	Create(context.Context, *models.Request) (*models.Response, error)
-	Update(context.Context, string, *models.Request) (*models.Response, error)
+	Create(context.Context, *models.CreateRequest) (*models.Response, error)
+	Update(context.Context, string, *models.UpdateRequest) (*models.Response, error)
 	Delete(context.Context, string) (*models.Response, error)
 }
 
