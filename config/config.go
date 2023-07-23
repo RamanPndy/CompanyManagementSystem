@@ -63,7 +63,7 @@ func getConfigFilePath() (string, error) {
 		configFilePath := strings.ReplaceAll(dir, "/cmd/api", configFile)
 		return configFilePath, nil
 	}
-	return configFile, nil
+	return strings.TrimPrefix(configFile, "/"), nil
 }
 
 // Get implements the interface function for IConfig

@@ -42,7 +42,7 @@ func JwtAuthMiddleware() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		err := auth.TokenValid(ctx.Query("token"), ctx.Request.Header.Get("Authorization"))
 		if err != nil {
-			ctx.String(http.StatusUnauthorized, "Unauthorized")
+			ctx.JSON(http.StatusUnauthorized, map[string]interface{}{"message": "request is unauthorized", "description": "authorization token is missing or expired"})
 			ctx.Abort()
 			return
 		}

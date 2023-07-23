@@ -1,3 +1,5 @@
+CREATE DATABASE companydb;
+
 CREATE TABLE IF NOT EXISTS public.company (
     id character varying NOT NULL,
     name character varying NOT NULL,

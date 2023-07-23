@@ -2,7 +2,6 @@ package main
 
 import (
 	"companybuilder/initiate"
-	"companybuilder/shared"
 	"log"
 
 	"github.com/ralstan-vaz/go-errors"
@@ -20,9 +19,6 @@ var Version string
 // @host localhost:80
 // @BasePath /v1
 func main() {
-	// Sets the version flag
-	shared.VERSION = Version
-
 	// Initialize the app
 	err := initiate.Initialize()
 	if err != nil {

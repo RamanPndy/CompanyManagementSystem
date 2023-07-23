@@ -1,19 +1,31 @@
-# CompanyBuilder
+# CompanyManagementSystem
 This project will expose APIs to create standard company structure
 
-DB setup on local:
+Project Structure:
+This Project follows MVC architecture
+1. apis : this directory contains controller and api routes.
+2. cmd : this directory contains main.go file.
+3. config : this directory contains config files and global config model.
+4. dal : this directory handles all data access layer operations.
+5. initiate : this directory contains logic for dependency injections of different modules.
+6. models: this directory contains models for different modules.
+7. modules: this directory contains modules which have business logic. this is bascially service layer.
+8. pkg : this directory contains logic of external packages integration.
+9. scripts: this directory contains different scripts such as for linting or unit tests.
+10. shared: this directory contains model for all internal dependencies of the project.
+11. sql: this directory contains all sql related data.
+Local Setup:
+1. Run Postgres DB via docker using below command
 docker run --name postgresdb -v local_psql_data:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_PASSWORD=root_pwd -d postgres:12-bullseye
-
-use setup.sql to create Table in company DB and relavant Tables.
-
-create app.env file with all secrets and db.env file to put DB credentials.
-
-just run main.go and application will start on port 80
+2. use setup.sql to create DB and relavant Tables.
+3. create app.env file with all secrets.
+4. just run main.go and application will start on port 8080
 
 Docker setup:
 1. create app.env file with all secrets and db.env file to put DB credentials.
 2. For docker, set TIER=docker and DB_HOST=db in app.env file
-2. docker-compose up --build
+3. docker-compose up --build
+4. Application will start on port 80
 
 APIs:
 1. Register : This API will register the User.

@@ -1,7 +1,6 @@
 package ping
 
 import (
-	"companybuilder/shared"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -39,6 +38,6 @@ func NewPingService() *Ping {
 // Get returns a response for the /ping request.
 // ctx *gin.Context : allows us to pass variables between middleware
 func (ping *Ping) Get(ctx *gin.Context) {
-	response := Response{Message: pongResponse, App: "companybuilder", CommitID: shared.VERSION}
+	response := Response{Message: pongResponse, App: "companybuilder"}
 	ctx.JSON(http.StatusOK, response)
 }
