@@ -2,7 +2,7 @@
 appVersion: 1.0.0
 server:
   http:
-    address: :8080
+    address: :80
 db:
   tables:
     - schema: public

@@ -28,7 +28,12 @@ type HTTP struct {
 }
 
 type DB struct {
-	Tables []Table `yaml:"tables"`
+	Host     string
+	Port     string
+	User     string
+	Password string
+	Name     string
+	Tables   []Table `yaml:"tables"`
 }
 
 type Table struct {

@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS public.company (
-    id character varying(32) NOT NULL,
+    id character varying NOT NULL,
     name character varying NOT NULL,
     description character varying,
     employees bigint,

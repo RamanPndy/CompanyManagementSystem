@@ -9,7 +9,11 @@ import (
 
 // CompanyInterface ...
 type CompanyInterface interface {
-	Get(ctx context.Context, id string) (*models.Company, error)
+	GetAll(context.Context) ([]*models.Company, error)
+	Get(context.Context, string) (*models.Company, error)
+	Create(context.Context, *models.Request) (*models.Response, error)
+	Update(context.Context, string, *models.Request) (*models.Response, error)
+	Delete(context.Context, string) (*models.Response, error)
 }
 
 // Module..

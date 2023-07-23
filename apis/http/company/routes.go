@@ -18,10 +18,10 @@ func bindRoutes(router *gin.Engine, deps *shared.Deps) {
 	routerAPI := router.Group("/company")
 	{
 		routerAPI.Use(middleware.JwtAuthMiddleware())
-		// routerAPI.GET("/", companyService.GetAll)
+		routerAPI.GET("/", companyService.GetAll)
 		routerAPI.GET("/:id", companyService.Get)
-		// routerAPI.POST("/", companyService.Create)
-		// routerAPI.PATCH("/:id", companyService.Update)
-		// routerAPI.DELETE("/:id", companyService.Delete)
+		routerAPI.POST("/", companyService.Create)
+		routerAPI.PATCH("/:id", companyService.Update)
+		routerAPI.DELETE("/:id", companyService.Delete)
 	}
 }

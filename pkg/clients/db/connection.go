@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"os"
 
 	_ "github.com/lib/pq"
 )
@@ -27,34 +26,26 @@ type DBClient struct {
 }
 
 func NewConn(appConfig config.IConfig) (*DBInstance, error) {
-	dbHost := os.Getenv("DB_HOST")
-	dbPort := os.Getenv("DB_PORT")
-	dbUser := os.Getenv("DB_USER")
-	dbPwd := os.Getenv("DB_PWD")
-	dbName := os.Getenv("DB_NAME")
+	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s "+"password=%s dbname=%s sslmode=disable",
+		appConfig.Get().DB.Host, appConfig.Get().DB.Port, appConfig.Get().DB.User, appConfig.Get().DB.Password, appConfig.Get().DB.Name)
 
-	if dbHost != "" && dbPort != "" && dbUser != "" && dbPwd != "" && dbName != "" {
-		psqlInfo := fmt.Sprintf("host=%s port=%s user=%s "+"password=%s dbname=%s sslmode=disable",
-			dbHost, dbPort, dbUser, dbPwd, dbName)
-
-		db, err := sql.Open(config.POSTGRES, psqlInfo)
-		if err != nil {
-			return nil, errors.New("postgres db client connection failed ->" + err.Error())
-		}
-
-		err = db.Ping()
-		if err != nil {
-			return nil, errors.New("postgres db client ping failed ->" + err.Error())
-		}
-
-		postgresDbInstance := &DBInstance{
-			DB: &DBClient{client: db},
-		}
-
-		// Returns
-		return postgresDbInstance, nil
+	db, err := sql.Open(config.POSTGRES, psqlInfo)
+	if err != nil {
+		return nil, errors.New("postgres db client connection failed ->" + err.Error())
 	}
-	return nil, errors.New("DB credentials not present")
+
+	err = db.Ping()
+	if err != nil {
+		return nil, errors.New("postgres db client ping failed ->" + err.Error())
+	}
+
+	postgresDbInstance := &DBInstance{
+		DB: &DBClient{client: db},
+	}
+
+	// Returns
+	return postgresDbInstance, nil
+
 }
 
 // Query ..

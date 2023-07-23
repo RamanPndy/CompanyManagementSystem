@@ -1,14 +1,16 @@
 package company
 
-import "database/sql"
+import (
+	"time"
+)
 
 type Company struct {
-	ID          string         `db:"id" mapstructure:"id"`
-	Name        sql.NullString `db:"name" mapstructure:"name"`
-	Description sql.NullString `db:"description" mapstructure:"description"`
-	Employees   sql.NullInt32  `db:"employees" mapstructure:"employees"`
-	Registered  sql.NullBool   `db:"registered" mapstructure:"registered"`
-	Type        sql.NullString `db:"type" mapstructure:"type"`
-	CreatedAt   sql.NullTime   `db:"createdat" mapstructure:"createdat"`
-	UpdatedAt   sql.NullTime   `db:"updatedat" mapstructure:"updatedat"`
+	ID          string    `db:"id" mapstructure:"id"`
+	Name        string    `db:"name" mapstructure:"name"`
+	Description string    `db:"description" mapstructure:"description"`
+	Employees   int       `db:"employees" mapstructure:"employees"`
+	Registered  bool      `db:"registered" mapstructure:"registered"`
+	Type        string    `db:"type" mapstructure:"type"`
+	CreatedAt   time.Time `db:"createdat" mapstructure:"createdat"`
+	UpdatedAt   time.Time `db:"updatedat" mapstructure:"updatedat"`
 }
