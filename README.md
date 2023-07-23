@@ -1,19 +1,20 @@
 # CompanyManagementSystem
-This project will expose APIs to create standard company structure
+This project will expose APIs to create a standard company structure
 
 Project Structure:
 This Project follows MVC architecture
-1. apis : this directory contains controller and api routes.
-2. cmd : this directory contains main.go file.
-3. config : this directory contains config files and global config model.
+1. apis : this directory contains controller and API routes.
+2. cmd : this directory contains the main.go file for starting the project.
+3. config : this directory contains config files and a global config model.
 4. dal : this directory handles all data access layer operations.
 5. initiate : this directory contains logic for dependency injections of different modules.
 6. models: this directory contains models for different modules.
 7. modules: this directory contains modules which have business logic. this is bascially service layer.
-8. pkg : this directory contains logic of external packages integration.
+8. pkg : this directory contains utils and external client integrations logic such as DB, Cache, Queue etc.
 9. scripts: this directory contains different scripts such as for linting or unit tests.
 10. shared: this directory contains model for all internal dependencies of the project.
 11. sql: this directory contains all sql related data.
+
 Local Setup:
 1. Run Postgres DB via docker using below command
 docker run --name postgresdb -v local_psql_data:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_PASSWORD=root_pwd -d postgres:12-bullseye
