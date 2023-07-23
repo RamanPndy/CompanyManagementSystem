@@ -4,7 +4,7 @@ CREATE DATABASE companydb;
 
 CREATE TABLE IF NOT EXISTS public.company (
     id character varying NOT NULL,
-    name character varying(15) NOT NULL,
+    name character varying(15) UNIQUE NOT NULL,
     description character varying(3000),
     employees bigint NOT NULL,
     registered boolean NOT NULL,
