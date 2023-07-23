@@ -48,3 +48,18 @@ func (d *Dal) GetUser(ctx context.Context, username string) (*User, error) {
 		return nil, err
 	}
 }
+
+func (d *Dal) Update(ctx context.Context, user *User) error {
+	schema, table := common.GetSchemaTable(d.Deps, config.USERS)
+
+	query := fmt.Sprintf(config.UPDATE_USER_QUERY, schema, table)
+
+	result, err := d.Deps.Database.DB.Exec(query, user.Password, user.Description, user.IsActive, user.UpdatedAt, user.UserName)
+	if err != nil {
+		return err
+	}
+
+	log.Println(result)
+
+	return nil
+}

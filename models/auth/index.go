@@ -1,10 +1,22 @@
 package auth
 
-type Request struct {
+type CreateRequest struct {
 	Username    string `json:"username" binding:"required"`
 	Password    string `json:"password" binding:"required"`
 	Description string `json:"description"`
 	IsActive    bool   `json:"isActive"`
+}
+
+type LoginRequest struct {
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
+}
+
+type UpdateRequest struct {
+	Username    string `json:"username" binding:"required"`
+	Password    string `json:"password"`
+	Description string `json:"description"`
+	IsActive    *bool  `json:"isActive"`
 }
 
 type Response struct {

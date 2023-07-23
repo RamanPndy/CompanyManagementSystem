@@ -13,5 +13,6 @@ const (
 	DELETE_COMPANY_QUERY = "DELETE from %s.%s WHERE id =$1"
 	CREATE_USER_QUERY    = "INSERT INTO %s.%s (username, password, isactive, createdat, updatedat) VALUES ($1, $2, $3, $4, $5)"
 	GET_USER_QUERY       = "select id, username, password, description, isactive, createdat, updatedat from %s.%s WHERE username =$1"
-	COMPANY_TYPES        = "Corporations | NonProfit | Cooperative | Sole Proprietorship"
+	UPDATE_USER_QUERY    = "UPDATE %s.%s SET password = $1, description = $2, isactive = $3, updatedat = $4 WHERE username = $5"
+	COMPANY_TYPES        = "Corporations|NonProfit|Cooperative|Sole Proprietorship"
 )

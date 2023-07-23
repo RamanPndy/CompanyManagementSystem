@@ -46,19 +46,28 @@ curl --location --request POST 'localhost:80/auth/login' \
     "password": "raman@123"
 }'
 
+3. Update : This API will update User data.
+curl --location --request PATCH 'localhost:80/auth/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username": "raman",
+    "password": "raman@123",
+    "isActive": false
+}'
+
 For all companies related API JWT token needs to be passed as Bearer Token which comes from login API
 
 1. GetAllCompanies : This API will return all companies created in the System
 curl --location --request GET 'localhost:80/company' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTAwOTYzMTksInVzZXJfaWQiOjF9.56m6hja-Mq9ciNcauvzKIjqF8L8rQTE1c_EhAvOk9h0'
+--header 'Authorization: Bearer <Bearer Token got from Login request>'
 
 2. GetCompany : This API will return Company information by company id.
 curl --location --request GET 'localhost:80/company/499622eb-8712-49d9-9bd3-cbfb0b038525' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTAwOTYzMTksInVzZXJfaWQiOjF9.56m6hja-Mq9ciNcauvzKIjqF8L8rQTE1c_EhAvOk9h0'
+--header 'Authorization: Bearer <Bearer Token got from Login request>'
 
 3. CreateCompany: This API will create Company in the system
 curl --location --request POST 'localhost:80/company/' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTAwOTYzMTksInVzZXJfaWQiOjF9.56m6hja-Mq9ciNcauvzKIjqF8L8rQTE1c_EhAvOk9h0' \
+--header 'Authorization: Bearer <Bearer Token got from Login request>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "name": "apple.com",
@@ -70,7 +79,7 @@ curl --location --request POST 'localhost:80/company/' \
 
 4. UpdateCompany : This API will update Company information in the system
 curl --location --request PATCH 'localhost:80/company/499622eb-8712-49d9-9bd3-cbfb0b038525' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTAwOTYzMTksInVzZXJfaWQiOjF9.56m6hja-Mq9ciNcauvzKIjqF8L8rQTE1c_EhAvOk9h0' \
+--header 'Authorization: Bearer <Bearer Token got from Login request>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "description": "google company",
@@ -80,5 +89,5 @@ curl --location --request PATCH 'localhost:80/company/499622eb-8712-49d9-9bd3-cb
 
 5. Delete Company : This API will delete Company data from the system by company id
 curl --location --request DELETE 'localhost:80/company/499622eb-8712-49d9-9bd3-cbfb0b038525' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2OTAwOTYzMTksInVzZXJfaWQiOjF9.56m6hja-Mq9ciNcauvzKIjqF8L8rQTE1c_EhAvOk9h0' \
+--header 'Authorization: Bearer <Bearer Token got from Login request>' \
 --data-raw ''

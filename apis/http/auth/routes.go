@@ -17,5 +17,6 @@ func bindRoutes(router *gin.Engine, deps *shared.Deps) {
 	{
 		routerAPI.POST("/register", authService.Register)
 		routerAPI.POST("/login", authService.Login)
+		routerAPI.PATCH("/", authService.Update)
 	}
 }

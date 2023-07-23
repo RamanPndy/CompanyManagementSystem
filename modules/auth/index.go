@@ -9,8 +9,9 @@ import (
 
 // AuthInterface ...
 type AuthInterface interface {
-	Login(context.Context, *models.Request) (*models.Response, error)
-	Register(context.Context, *models.Request) (*models.Response, error)
+	Login(context.Context, *models.LoginRequest) (*models.Response, error)
+	Register(context.Context, *models.CreateRequest) (*models.Response, error)
+	Update(context.Context, *models.UpdateRequest) (*models.Response, error)
 }
 
 // Module..

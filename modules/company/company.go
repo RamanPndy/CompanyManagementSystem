@@ -54,7 +54,8 @@ func (m *Module) Get(ctx context.Context, id string) (*models.Company, error) {
 }
 
 func (m *Module) Create(ctx context.Context, request *models.CreateRequest) (*models.Response, error) {
-	if !utils.Contains(strings.Split(config.COMPANY_TYPES, "|"), request.Type) {
+	allowedCompanyTypes := strings.Split(config.COMPANY_TYPES, "|")
+	if !utils.Contains(allowedCompanyTypes, request.Type) {
 		return nil, errors.New("Invalid Company Type")
 	}
 
